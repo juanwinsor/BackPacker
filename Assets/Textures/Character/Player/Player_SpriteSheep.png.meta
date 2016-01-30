@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: d6763ac3e3d5bb34b9745dd6b01f7ed3
+timeCreated: 1454179658
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Head
+    21300002: Neck
+    21300004: UpperBody
+    21300006: LowerBody
+    21300008: RightCalf
+    21300010: LeftCalf
+    21300012: LeftThigh
+    21300014: LeftFoot
+    21300016: RightFoot
+    21300018: RightThigh
+    21300020: LeftHand
+    21300022: LeftForearm
+    21300024: LeftUpperArm
+    21300026: RightUpperArm
+    21300028: RightForearm
+    21300030: RightHand
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Head
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 419
+        width: 60
+        height: 73
+      alignment: 9
+      pivot: {x: 0.4716775, y: 0.09262252}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.699348, y: 66.238556}
+        - {x: -16.300652, y: 66.238556}
+        - {x: -28.300652, y: 62.238556}
+        - {x: -28.300652, y: 4.238556}
+        - {x: -15.300652, y: -6.761444}
+        - {x: 18.699348, y: -6.761444}
+        - {x: 21.699348, y: -5.761444}
+        - {x: 31.699348, y: 6.238556}
+        - {x: 31.699348, y: 51.238556}
+        - {x: 30.699348, y: 59.238556}
+    - name: Neck
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 440
+        width: 36
+        height: 32
+      alignment: 9
+      pivot: {x: 0.47639805, y: 0.12826824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.15033, y: 27.895416}
+        - {x: -17.15033, y: -4.1045837}
+        - {x: 18.84967, y: -4.1045837}
+        - {x: 18.84967, y: 24.895416}
+        - {x: 13.84967, y: 27.895416}
+    - name: UpperBody
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 353
+        width: 139
+        height: 132
+      alignment: 9
+      pivot: {x: 0.51222557, y: 0.07516341}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 59.800644, y: 122.07843}
+        - {x: -57.199356, y: 122.07843}
+        - {x: -71.199356, y: 116.07843}
+        - {x: -71.199356, y: 25.07843}
+        - {x: -61.199356, y: -0.9215698}
+        - {x: -34.199356, y: -9.92157}
+        - {x: 38.800644, y: -9.92157}
+        - {x: 57.800644, y: 5.07843}
+        - {x: 67.800644, y: 62.07843}
+        - {x: 67.800644, y: 116.07843}
+    - name: LowerBody
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 254
+        width: 122
+        height: 139
+      alignment: 9
+      pivot: {x: 0.50696445, y: 0.084332585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40.150337, y: 125.27777}
+        - {x: 18.150337, y: 127.27777}
+        - {x: -13.849663, y: 127.27777}
+        - {x: -28.849663, y: 123.27777}
+        - {x: -35.849663, y: 120.27777}
+        - {x: -40.849663, y: 116.27777}
+        - {x: -44.849663, y: 106.27777}
+        - {x: -61.849663, y: 39.27777}
+        - {x: -61.849663, y: -11.722229}
+        - {x: 59.150337, y: -11.722229}
+        - {x: 60.150337, y: -6.722229}
+        - {x: 60.150337, y: 37.27777}
+        - {x: 53.150337, y: 75.27777}
+    - name: RightCalf
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 180
+        width: 36
+        height: 149
+      alignment: 9
+      pivot: {x: 0.31118393, y: 0.9333904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.202621, y: 9.924835}
+        - {x: -11.202621, y: -63.075165}
+        - {x: 0.79737854, y: -139.07516}
+        - {x: 24.797379, y: -139.07516}
+        - {x: 24.797379, y: 4.924835}
+        - {x: 21.797379, y: 9.924835}
+    - name: LeftCalf
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 179
+        width: 36
+        height: 149
+      alignment: 9
+      pivot: {x: 0.52360195, y: 0.8934728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.15033, y: 15.872559}
+        - {x: -12.84967, y: 15.872559}
+        - {x: -18.84967, y: 7.8725586}
+        - {x: -18.84967, y: -133.12744}
+        - {x: 3.1503296, y: -133.12744}
+        - {x: 10.15033, y: -121.12744}
+        - {x: 17.15033, y: -57.12744}
+        - {x: 17.15033, y: 9.872559}
+    - name: LeftThigh
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 260
+        width: 175
+        height: 66
+      alignment: 9
+      pivot: {x: 0.9515405, y: 0.7059812}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.519592, y: 19.405243}
+        - {x: -114.51959, y: 19.405243}
+        - {x: -166.51959, y: -1.5947571}
+        - {x: -166.51959, y: -44.594757}
+        - {x: -161.51959, y: -46.594757}
+        - {x: -78.51959, y: -46.594757}
+        - {x: 3.4804077, y: -25.594757}
+        - {x: 8.480408, y: -12.594757}
+        - {x: 8.480408, y: 11.405243}
+    - name: LeftFoot
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 181
+        width: 69
+        height: 39
+      alignment: 9
+      pivot: {x: 0.7832241, y: 0.78322506}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.042465, y: 8.454224}
+        - {x: -54.042465, y: -13.545776}
+        - {x: -54.042465, y: -30.545776}
+        - {x: 14.957535, y: -30.545776}
+        - {x: 14.957535, y: -3.5457764}
+        - {x: 12.957535, y: 8.454224}
+    - name: RightFoot
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 183
+        width: 69
+        height: 39
+      alignment: 9
+      pivot: {x: 0.2290897, y: 0.8267975}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43.19281, y: -10.245102}
+        - {x: 13.19281, y: 4.754898}
+        - {x: 8.19281, y: 6.754898}
+        - {x: -12.80719, y: 6.754898}
+        - {x: -15.80719, y: 4.754898}
+        - {x: -15.80719, y: -32.245102}
+        - {x: 53.19281, y: -32.245102}
+        - {x: 53.19281, y: -19.245102}
+        - {x: 48.19281, y: -13.245102}
+    - name: RightThigh
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 172
+        width: 177
+        height: 66
+      alignment: 9
+      pivot: {x: 0.053561624, y: 0.65448624}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.480408, y: 22.80391}
+        - {x: -9.480408, y: -10.196091}
+        - {x: 7.5195923, y: -36.19609}
+        - {x: 57.519592, y: -43.19609}
+        - {x: 165.51959, y: -43.19609}
+        - {x: 167.51959, y: -38.19609}
+        - {x: 167.51959, y: -2.1960907}
+        - {x: 143.51959, y: 22.80391}
+    - name: LeftHand
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 130
+        width: 41
+        height: 33
+      alignment: 9
+      pivot: {x: 0.8730268, y: 0.39700964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.205902, y: 19.898682}
+        - {x: -35.794098, y: 19.898682}
+        - {x: -35.794098, y: -13.101318}
+        - {x: 4.205902, y: -13.101318}
+        - {x: 5.205902, y: -12.101318}
+        - {x: 5.205902, y: 15.898682}
+    - name: LeftForearm
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 130
+        width: 87
+        height: 29
+      alignment: 9
+      pivot: {x: 0.9394859, y: 0.558598}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: LeftUpperArm
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 128
+        width: 95
+        height: 38
+      alignment: 9
+      pivot: {x: 0.87564474, y: 0.6788788}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -52.18625, y: 12.202606}
+        - {x: -80.18625, y: 9.202606}
+        - {x: -83.18625, y: 3.2026062}
+        - {x: -83.18625, y: -17.797394}
+        - {x: -78.18625, y: -21.797394}
+        - {x: -63.18625, y: -25.797394}
+        - {x: 6.813751, y: -25.797394}
+        - {x: 11.813751, y: -16.797394}
+        - {x: 11.813751, y: 12.202606}
+    - name: RightUpperArm
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 74
+        width: 96
+        height: 37
+      alignment: 9
+      pivot: {x: 0.11056646, y: 0.52296466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.61438, y: 17.650307}
+        - {x: -10.61438, y: 11.650307}
+        - {x: -10.61438, y: -13.349693}
+        - {x: 2.38562, y: -19.349693}
+        - {x: 68.38562, y: -19.349693}
+        - {x: 85.38562, y: -18.349693}
+        - {x: 85.38562, y: 9.650307}
+        - {x: 55.38562, y: 17.650307}
+    - name: RightForearm
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 78
+        width: 89
+        height: 30
+      alignment: 9
+      pivot: {x: 0.07993668, y: 0.52832335}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: RightHand
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 78
+        width: 40
+        height: 34
+      alignment: 9
+      pivot: {x: 0.13888855, y: 0.37504825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.444458, y: 21.24836}
+        - {x: -5.555542, y: 18.24836}
+        - {x: -5.555542, y: -8.75164}
+        - {x: -3.555542, y: -9.75164}
+        - {x: 8.444458, y: -12.75164}
+        - {x: 27.444458, y: -12.75164}
+        - {x: 34.444458, y: -4.7516403}
+        - {x: 34.444458, y: 14.24836}
+        - {x: 29.444458, y: 21.24836}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
