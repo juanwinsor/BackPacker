@@ -2,7 +2,7 @@
 using System.Collections;
 
 enum TileType { Safe, Empty, Spike }
-enum LaneNumber {Right, Center, Left}
+enum LaneNumber {Left, LeftCenter, RightCenter, Right}
 
 public class TileScript : MonoBehaviour
 {
@@ -22,24 +22,12 @@ public class TileScript : MonoBehaviour
 
     }
 
-    void SetNewTile(TileType tileType, LaneNumber laneNumber, int elevation)
+    void SetNewTile(TileType tileType, LaneNumber laneNumber, int elevation, Sprite theSprite)
     {
-        //TODO: Check the tile pool and get one that is available, else create new one? or does it go to manager?
         myTileType = tileType;
         myLaneNumber = laneNumber;
         myElevation = elevation;
-        switch (tileType)
-        {
-            case TileType.Safe:
-                //Set Sprite to safe tile
-                break;
-            case TileType.Empty:
-                //Set Sprite to Empty
-                break;
-            case TileType.Spike:
-                //Set Sprite to Spike
-                break;
-        }//End switch
+        gameObject.GetComponent<SpriteRenderer>().sprite = theSprite;
     }//End SetNewTile
 
 }

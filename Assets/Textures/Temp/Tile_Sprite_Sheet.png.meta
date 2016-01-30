@@ -1,9 +1,18 @@
 fileFormatVersion: 2
 guid: 1877e18828fe683468ac63f4d4c38dd9
-timeCreated: 1454174601
+timeCreated: 1454183099
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: SafeSprite1
+    21300002: SafeSprite2
+    21300004: SafeSprite3
+    21300006: SlideSprite1
+    21300008: SlideSprite2
+    21300010: SlideSprite3
+    21300012: SpikeSprite1
+    21300014: SpikeSprite2
+    21300016: SpikeSprite3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,26 +39,161 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: SafeSprite1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 490.6667
+        width: 245.33333
+        height: 245.33331
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66669}
+        - {x: -123, y: -122.33331}
+        - {x: 123, y: -122.33331}
+        - {x: 123, y: 123.66669}
+    - name: SafeSprite2
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 490.6667
+        width: 245.33331
+        height: 245.33331
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66669}
+        - {x: -123, y: -122.33331}
+        - {x: 123, y: -122.33331}
+        - {x: 123, y: 123.66669}
+    - name: SafeSprite3
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 490.6667
+        width: 245.33331
+        height: 245.33331
+      alignment: 0
+      pivot: {x: 0.49999988, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66669}
+        - {x: -123, y: -122.33331}
+        - {x: 123, y: -122.33331}
+        - {x: 123, y: 123.66669}
+    - name: SlideSprite1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245.66667
+        width: 245.33333
+        height: 245.33333
+      alignment: 0
+      pivot: {x: 0.5, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66667}
+        - {x: -123, y: -122.33333}
+        - {x: 123, y: -122.33333}
+        - {x: 123, y: 123.66667}
+    - name: SlideSprite2
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 245.66667
+        width: 245.33331
+        height: 245.33333
+      alignment: 0
+      pivot: {x: 0.5, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66667}
+        - {x: -123, y: -122.33333}
+        - {x: 123, y: -122.33333}
+        - {x: 123, y: 123.66667}
+    - name: SlideSprite3
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 245.66667
+        width: 245.33331
+        height: 245.33333
+      alignment: 0
+      pivot: {x: 0.49999988, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66667}
+        - {x: -123, y: -122.33333}
+        - {x: 123, y: -122.33333}
+        - {x: 123, y: 123.66667}
+    - name: SpikeSprite1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.66667175
+        width: 245.33333
+        height: 245.33333
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66667}
+        - {x: -123, y: -122.33333}
+        - {x: 123, y: -122.33333}
+        - {x: 123, y: 123.66667}
+    - name: SpikeSprite2
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 0.66667175
+        width: 245.33331
+        height: 245.33333
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66667}
+        - {x: -123, y: -122.33333}
+        - {x: 123, y: -122.33333}
+        - {x: 123, y: 123.66667}
+    - name: SpikeSprite3
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 0.66667175
+        width: 245.33331
+        height: 245.33333
+      alignment: 0
+      pivot: {x: 0.49999988, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -123, y: 123.66667}
+        - {x: -123, y: -122.33333}
+        - {x: 123, y: -122.33333}
+        - {x: 123, y: 123.66667}
     outline: []
   spritePackingTag: 
   userData: 
