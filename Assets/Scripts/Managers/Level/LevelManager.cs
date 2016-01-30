@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        InitializeLevel();
     }
 
     // Update is called once per frame
@@ -35,11 +35,32 @@ public class LevelManager : MonoBehaviour
     void InitializeLevel()
     {
         Sprite spriteToUse;
+        TileScript tileScriptToUse;
         for (int i = 0; i < maxLevelSize - bossTime; i++)
         {
-            spriteToUse = safeSprites[Random.Range(0,3)];
-            //TileSetList.Add(theDeadPool.GetPoolObject().GetComponent<TileScript>().SetNewTile(TileType.Safe, LaneNumber.Left, i, spriteToUse));
-            //Make all safe tiles for now.
+            for (int j = 0; j < 4; j++)
+            {
+                spriteToUse = safeSprites[Random.Range(0, safeSprites.Count)];//Gets a random sprite of safe type
+                tileScriptToUse = theDeadPool.GetPoolObject().GetComponent<TileScript>(); //gets the TileScript from the tile prefab
+                switch (j)
+                {
+                    case 0:
+                        tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.Left, nextElevation, spriteToUse); //Sets the new tile's properties
+                        break;
+                    case 1:
+                        tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.LeftCenter, nextElevation, spriteToUse); //Sets the new tile's properties
+                        break;
+                    case 2:
+                        tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.RightCenter, nextElevation, spriteToUse); //Sets the new tile's properties
+                        break;
+                    case 3:
+                        tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.Right, nextElevation, spriteToUse); //Sets the new tile's properties
+                        break;
+                }//end switch
+                tileScriptToUse.setTilePosition(currentElevation); //Sets the new tiles position
+                tileScriptToUse.gameObject.SetActive(true);//Set the tile to be active
+                TileSetList.Add(tileScriptToUse); //add the tile to the active list
+            }
             nextElevation++;
         }
     }
