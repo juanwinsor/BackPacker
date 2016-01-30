@@ -38,12 +38,16 @@ public class PlayerController : MonoBehaviour
         switch( GetSwipeDirectionFromVector( deltaPosition ))
         {
             case SwipeDirection.SwipeDown:
+                RequestMove(MoveDirection.MoveDown);
                 break;
             case SwipeDirection.SwipeUp:
+                RequestMove(MoveDirection.MoveUp);
                 break;
             case SwipeDirection.SwipeLeft:
+                RequestMove(MoveDirection.MoveLeft);
                 break;
             case SwipeDirection.SwipeRight:
+                RequestMove(MoveDirection.MoveRight);
                 break;
         }
     }
