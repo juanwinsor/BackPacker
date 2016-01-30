@@ -6,12 +6,15 @@ public class LevelManager : MonoBehaviour
 {
     //TODO: Spawn Initial Level with tile objects, Spawn new tiles as the character moves up, Scroll the tiles down when player jumps
     //get new tiles from the tile 
+    public GameObjectPool theDeadPool;
 
     public List<Sprite> safeSprites = new List<Sprite>();
     public List<Sprite> slideSprites = new List<Sprite>();
     public List<Sprite> spikeSprites = new List<Sprite>();
 
-    List<GameObject> TileSetList = new List<GameObject>();
+
+
+    List<TileScript> TileSetList = new List<TileScript>();
     int maxLevelSize = 15;
     int bossTime = 5;
     int currentElevation = 0;
@@ -31,9 +34,11 @@ public class LevelManager : MonoBehaviour
 
     void InitializeLevel()
     {
+        Sprite spriteToUse;
         for (int i = 0; i < maxLevelSize - bossTime; i++)
         {
-            //Get free tile from tilepool.
+            spriteToUse = safeSprites[Random.Range(0,3)];
+            //TileSetList.Add(theDeadPool.GetPoolObject().GetComponent<TileScript>().SetNewTile(TileType.Safe, LaneNumber.Left, i, spriteToUse));
             //Make all safe tiles for now.
             nextElevation++;
         }

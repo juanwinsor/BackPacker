@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-enum TileType { Safe, Empty, Spike }
+enum TileType { Safe, Slide, Spike }
 enum LaneNumber {Left, LeftCenter, RightCenter, Right}
 
 public class TileScript : MonoBehaviour
@@ -22,7 +22,7 @@ public class TileScript : MonoBehaviour
 
     }
 
-    void SetNewTile(TileType tileType, LaneNumber laneNumber, int elevation, Sprite theSprite)
+    public void SetNewTile(TileType tileType, LaneNumber laneNumber, int elevation, Sprite theSprite)
     {
         myTileType = tileType;
         myLaneNumber = laneNumber;
