@@ -19,10 +19,12 @@ public class LevelManager : MonoBehaviour
     int bossTime = 5;
     int currentElevation = 0;
     int nextElevation = 0;
+    float spriteScale = 160.0f / 256.0f;
 
     // Use this for initialization
     void Start()
     {
+        gameObject.transform.localScale = new Vector3(spriteScale, spriteScale, spriteScale);
         InitializeLevel();
     }
 
