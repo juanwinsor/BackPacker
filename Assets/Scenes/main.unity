@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17411743b08d5c42b45762a46e83bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theDeadPool: {fileID: 1022725621}
+  theDeadPool: {fileID: 0}
   safeSprites:
   - {fileID: 21300000, guid: 1877e18828fe683468ac63f4d4c38dd9, type: 3}
   - {fileID: 21300002, guid: 1877e18828fe683468ac63f4d4c38dd9, type: 3}
@@ -273,6 +273,7 @@ Transform:
   - {fileID: 1680061185}
   - {fileID: 1608741723}
   - {fileID: 1022725619}
+  - {fileID: 1662605483}
   m_Father: {fileID: 1813033377}
   m_RootOrder: 1
 --- !u!1 &1608741722
@@ -315,6 +316,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1022725620}
+--- !u!1 &1662605482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1662605483}
+  - 114: {fileID: 1662605484}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1662605483
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662605482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1262319571}
+  m_RootOrder: 3
+--- !u!114 &1662605484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662605482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09b6f768c2bae044b239a90d08a4275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gestureTime: 0.3
 --- !u!1 &1680061184
 GameObject:
   m_ObjectHideFlags: 0

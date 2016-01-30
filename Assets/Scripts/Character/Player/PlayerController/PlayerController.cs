@@ -1,19 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum SwipeDirection
+{
+    None,
+    SwipeLeft,
+    SwipeRight,
+    SwipeUp,
+    SwipeDown
+}
+
 public enum MoveDirection
 {
-
+    MoveLeft,
+    MoveRight,
+    MoveUp,
+    MoveDown
 }
+
 
 public class PlayerController : MonoBehaviour
 {
+    public TouchInput touchInput;
 
     // Use this for initialization
     void Start()
     {
         //-- give the gameplay manager a reference to the player controller
         GameplayManager.Instance.RegisterPlayerController( this );
+
+        //-- register for input events
+        touchInput.Swipe += TouchInput_Swipe;
+    }
+
+    private void TouchInput_Swipe(TouchEventInfo touchInfo, float deltaTime, Vector2 deltaPosition)
+    {
+        switch( GetSwipeDirectionFromVector( deltaPosition ))
+        {
+            case SwipeDirection.SwipeDown:
+                break;
+            case SwipeDirection.SwipeUp:
+                break;
+            case SwipeDirection.SwipeLeft:
+                break;
+            case SwipeDirection.SwipeRight:
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -54,4 +86,36 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
+    SwipeDirection GetSwipeDirectionFromVector(Vector2 dir)
+    {
+        SwipeDirection result = SwipeDirection.None;
+
+        //-- check which axis has the most influence
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            if (dir.x < 0)
+            {
+                result = SwipeDirection.SwipeLeft;
+            }
+            else
+            {
+                result = SwipeDirection.SwipeRight;
+            }
+        }
+        else
+        {
+            if (dir.y < 0)
+            {
+                result = SwipeDirection.SwipeDown;
+            }
+            else
+            {
+                result = SwipeDirection.SwipeUp;
+            }
+        }
+
+        return result;
+    }
+
 }

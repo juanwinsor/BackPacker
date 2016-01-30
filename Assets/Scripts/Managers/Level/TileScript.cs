@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-enum TileType { Safe, Slide, Spike }
-enum LaneNumber {Left, LeftCenter, RightCenter, Right}
+public enum TileType { Safe, Slide, Spike }
+public enum LaneNumber {Left, LeftCenter, RightCenter, Right}
 
 public class TileScript : MonoBehaviour
 {
