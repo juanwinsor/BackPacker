@@ -24,6 +24,7 @@ public class GameplayManager : MonoBehaviour
 
     public float playerMoveTime = 0.5f;
     public float playerIKTransitionTime = 0.5f;
+    private float m_TileSizeScaled = 0.0f;
 
     private PlayerController m_PlayerController;
     private TileScript m_CurrentTile;
@@ -43,7 +44,8 @@ public class GameplayManager : MonoBehaviour
     void StartLevel()
     {
         //-- set the characters current tile
-        m_CurrentTile = levelManager.GetTile(MoveDirection.MoveLeft, LaneNumber.Left, 0);
+        m_CurrentTile = levelManager.GetTile(MoveDirection.MoveLeft, LaneNumber.LeftCenter, 0);
+        //m_TileSizeScaled = m_CurrentTile.
 
         //-- set the character position
         m_PlayerController.transform.position = m_CurrentTile.transform.position;
@@ -59,6 +61,7 @@ public class GameplayManager : MonoBehaviour
             if( direction == MoveDirection.MoveUp )
             {
                 m_PlayerController.SetPlayerState(PlayerState.Hop_Up);
+                //levelManager.MoveTiles();
             }
             if (direction == MoveDirection.MoveDown)
             {
@@ -67,6 +70,7 @@ public class GameplayManager : MonoBehaviour
             if (direction == MoveDirection.MoveLeft)
             {
                 m_PlayerController.SetPlayerState(PlayerState.Hop_Left);
+                //levelManager.MoveTiles();
             }
             if (direction == MoveDirection.MoveRight)
             {
@@ -85,6 +89,6 @@ public class GameplayManager : MonoBehaviour
         m_PlayerController.SetMoveTime(playerMoveTime);
         m_PlayerController.SetIKTransitionTime(playerIKTransitionTime);
 
-        //StartLevel();
+        StartLevel();
     }
 }
