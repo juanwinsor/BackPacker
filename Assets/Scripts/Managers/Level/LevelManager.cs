@@ -85,4 +85,35 @@ public class LevelManager : MonoBehaviour
         currentElevation--;
         //shift all tiles up
     }
+
+    TileScript GetTile(MoveDirection direction, LaneNumber lane, int elevation)
+    {
+        
+        switch (direction)
+        {
+            case MoveDirection.MoveUp:
+                for (int i = 0; i < TileSetList.Count; i++)
+                {
+                  //  if()
+                }
+                    break;
+            case MoveDirection.MoveDown:
+                break;
+            case MoveDirection.MoveLeft:
+                if (LaneNumber.Left == lane)
+                {
+                    return null;
+                }
+                break;
+            case MoveDirection.MoveRight:
+                if (LaneNumber.Right == lane)
+                {
+                    return null;
+                }
+                break;
+        }
+        return null;
+    }
+
+
 }
