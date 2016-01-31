@@ -111,6 +111,7 @@ public class LevelManager : MonoBehaviour
         {
             if (tileSetList[i].myElevation == lastElevation)
             {
+                tileSetList[i].gameObject.SetActive(false);
                 tileSetList.Remove(tileSetList[i]);
             }
         }
