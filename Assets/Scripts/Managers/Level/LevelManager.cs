@@ -12,19 +12,23 @@ public class LevelManager : MonoBehaviour
     public List<Sprite> slideSprites = new List<Sprite>();
     public List<Sprite> spikeSprites = new List<Sprite>();
 
+    float spriteScaledSize = 0;
 
 
-    List<TileScript> TileSetList = new List<TileScript>();
+
+    List<TileScript> tileSetList = new List<TileScript>();
     int maxLevelSize = 15;
     int bossTime = 5;
     int currentElevation = 0;
     int nextElevation = 0;
+    int lastElevation = 0;
     float spriteScale = 160.0f / 256.0f;
 
     // Use this for initialization
     void Start()
     {
         gameObject.transform.localScale = new Vector3(spriteScale, spriteScale, spriteScale);
+        spriteScaledSize = 160.0f / 256.0f * safeSprites[0].textureRect.width;
         InitializeLevel();
     }
 
@@ -61,7 +65,7 @@ public class LevelManager : MonoBehaviour
                 }//end switch
                 tileScriptToUse.setTilePosition(currentElevation); //Sets the new tiles position
                 tileScriptToUse.gameObject.SetActive(true);//Set the tile to be active
-                TileSetList.Add(tileScriptToUse); //add the tile to the active list
+                tileSetList.Add(tileScriptToUse); //add the tile to the active list
             }
             nextElevation++;
         }
@@ -69,22 +73,80 @@ public class LevelManager : MonoBehaviour
 
     void SpawnRow()
     {
-        //Get free tiles from tilepool and set to nextElevation
+        if (currentElevation - lastElevation > maxLevelSize)
+        {
+            RemoveRow();
+        }
+        Sprite spriteToUse;
+        TileScript tileScriptToUse;
+        for (int j = 0; j < 4; j++)
+        {
+            spriteToUse = safeSprites[Random.Range(0, safeSprites.Count)];//Gets a random sprite of safe type
+            tileScriptToUse = theDeadPool.GetPoolObject().GetComponent<TileScript>(); //gets the TileScript from the tile prefab
+            switch (j)
+            {
+                case 0:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.Left, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+                case 1:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.LeftCenter, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+                case 2:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.RightCenter, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+                case 3:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.Right, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+            }//end switch
+            tileScriptToUse.setTilePosition(currentElevation); //Sets the new tiles position
+            tileScriptToUse.gameObject.SetActive(true);//Set the tile to be active
+            tileSetList.Add(tileScriptToUse); //add the tile to the active list
+        }
         nextElevation++;
     }
 
-    void GoUp()
+    void RemoveRow()
     {
-        currentElevation++;
-        //Shift all tiles down
-        SpawnRow();
+        for (int i = 0; i < tileSetList.Count; i++)
+        {
+            if (tileSetList[i].myElevation == lastElevation)
+            {
+                tileSetList.Remove(tileSetList[i]);
+            }
+        }
+        lastElevation++;
     }
 
-    void GoDown()
+    public void MoveTiles(MoveDirection direction, float moveTime)
     {
-        currentElevation--;
-        //shift all tiles up
+        Vector3 newPosition = Vector3.zero;
+        if (MoveDirection.MoveUp == direction)
+        {            
+            for (int i = 0; i < tileSetList.Count; i++)
+            {
+                newPosition = new Vector3(tileSetList[i].gameObject.transform.position.x, tileSetList[i].gameObject.transform.position.y - spriteScaledSize, tileSetList[i].gameObject.transform.position.z);
+                Hashtable hash = iTween.Hash("position", newPosition, "time", moveTime, "easetype", iTween.EaseType.easeOutElastic);
+                iTween.MoveTo(tileSetList[i].gameObject, hash);
+            }
+            currentElevation++;
+            if (nextElevation - currentElevation < maxLevelSize - bossTime)
+            {
+                SpawnRow();
+            }
+        }
+        else if (MoveDirection.MoveDown == direction)
+        {
+            for (int i = 0; i < tileSetList.Count; i++)
+            {
+                //MoveTo with Itween
+                newPosition = new Vector3(tileSetList[i].gameObject.transform.position.x, tileSetList[i].gameObject.transform.position.y + spriteScaledSize, tileSetList[i].gameObject.transform.position.z);
+                Hashtable hash = iTween.Hash("position", newPosition, "time", moveTime, "easetype", iTween.EaseType.easeOutElastic);
+                iTween.MoveTo(tileSetList[i].gameObject, hash);
+            }
+            currentElevation--;
+        }
     }
+
 
     public TileScript GetTile(MoveDirection direction, LaneNumber lane, int elevation)
     {
@@ -92,20 +154,20 @@ public class LevelManager : MonoBehaviour
         switch (direction)
         {
             case MoveDirection.MoveUp:
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane && TileSetList[i].myElevation + 1 == elevation)
+                    if (tileSetList[i].myLaneNumber == lane && tileSetList[i].myElevation == elevation + 1)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
             case MoveDirection.MoveDown:
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane && TileSetList[i].myElevation - 1 == elevation)
+                    if (tileSetList[i].myLaneNumber == lane && tileSetList[i].myElevation == elevation - 1)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
@@ -115,11 +177,11 @@ public class LevelManager : MonoBehaviour
                     return null;
                 }
 
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane - 1 && TileSetList[i].myElevation == elevation)
+                    if (tileSetList[i].myLaneNumber == lane - 1 && tileSetList[i].myElevation == elevation)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
@@ -129,11 +191,11 @@ public class LevelManager : MonoBehaviour
                     return null;
                 }
 
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane + 1 && TileSetList[i].myElevation == elevation)
+                    if (tileSetList[i].myLaneNumber == lane + 1 && tileSetList[i].myElevation == elevation)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
