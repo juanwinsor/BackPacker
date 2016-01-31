@@ -138,4 +138,28 @@ public class PlayerController : MonoBehaviour
     {
         m_Animator.SetFloat("IKTransitionTime", ikTime);
     }
+
+    public void MoveUp()
+    {
+        TouchEventInfo temp = new TouchEventInfo();
+        TouchInput_Swipe(temp, 0, Vector2.up);
+    }
+
+    public void MoveDown()
+    {
+        TouchEventInfo temp = new TouchEventInfo();
+        TouchInput_Swipe(temp, 0, Vector2.down);
+    }
+
+    public void MoveLeft()
+    {
+        TouchEventInfo temp = new TouchEventInfo();
+        TouchInput_Swipe(temp, 0, Vector2.left);
+    }
+
+    public void MoveRight()
+    {
+        TouchEventInfo temp = new TouchEventInfo();
+        TouchInput_Swipe(temp, 0, Vector2.right);
+    }
 }
