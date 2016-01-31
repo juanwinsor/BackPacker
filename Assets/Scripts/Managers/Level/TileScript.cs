@@ -6,7 +6,7 @@ public enum LaneNumber {Left, LeftCenter, RightCenter, Right}
 
 public class TileScript : MonoBehaviour, IPoolable
 {
-    TileType myTileType; //The tile type that was given by the initilization from the manager when setting the sprite.
+    public TileType myTileType; //The tile type that was given by the initilization from the manager when setting the sprite.
     public LaneNumber myLaneNumber; //What lane the tile is in (right, center or left)
     public int myElevation = 0; //what elevation the tile is.
     Sprite sprite;

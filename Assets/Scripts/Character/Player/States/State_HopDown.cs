@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class State_HopUp : StateMachineBehaviour
+public class State_HopDown : StateMachineBehaviour
 {
     private float m_IKTransitionTime = 0.0f;
     private float m_MoveTimer = 0.0f;
@@ -16,7 +16,7 @@ public class State_HopUp : StateMachineBehaviour
         m_MoveTimer += Time.deltaTime;
 
         //-- switch ik targets
-        if(m_MoveTimer > m_IKTransitionTime)
+        if (m_MoveTimer > m_IKTransitionTime)
         {
 
         }

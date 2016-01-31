@@ -22,6 +22,7 @@ public enum MoveDirection
 public class PlayerController : MonoBehaviour
 {
     public TouchInput touchInput;
+    private Animator m_Animator;
 
     // Use this for initialization
     void Start()
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
         //-- register for input events
         touchInput.Swipe += TouchInput_Swipe;
+
+        m_Animator = GetComponent<Animator>();
     }
 
     private void TouchInput_Swipe(TouchEventInfo touchInfo, float deltaTime, Vector2 deltaPosition)
@@ -77,12 +80,16 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Bump_Right:
                 break;
             case PlayerState.Hop_Down:
+                m_Animator.SetTrigger("HopDown");
                 break;
             case PlayerState.Hop_Up:
+                m_Animator.SetTrigger("HopUp");
                 break;
             case PlayerState.Hop_Left:
+                m_Animator.SetTrigger("HopLeft");
                 break;
             case PlayerState.Hop_Right:
+                m_Animator.SetTrigger("HopRight");
                 break;
             case PlayerState.Slide:
                 break;
@@ -120,6 +127,11 @@ public class PlayerController : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void SetMoveTime( float moveTime )
+    {
+        m_Animator.SetFloat("MoveTime", moveTime);
     }
 
 }

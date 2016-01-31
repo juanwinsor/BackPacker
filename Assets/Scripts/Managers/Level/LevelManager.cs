@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour
         //shift all tiles up
     }
 
-    TileScript GetTile(MoveDirection direction, LaneNumber lane, int elevation)
+    public TileScript GetTile(MoveDirection direction, LaneNumber lane, int elevation)
     {
         
         switch (direction)
