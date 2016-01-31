@@ -27,13 +27,13 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        m_Animator = GetComponent<Animator>();
+
         //-- give the gameplay manager a reference to the player controller
         GameplayManager.Instance.RegisterPlayerController( this );
 
         //-- register for input events
-        touchInput.Swipe += TouchInput_Swipe;
-
-        m_Animator = GetComponent<Animator>();
+        touchInput.Swipe += TouchInput_Swipe;        
     }
 
     private void TouchInput_Swipe(TouchEventInfo touchInfo, float deltaTime, Vector2 deltaPosition)
@@ -134,4 +134,8 @@ public class PlayerController : MonoBehaviour
         m_Animator.SetFloat("MoveTime", moveTime);
     }
 
+    public void SetIKTransitionTime(float ikTime)
+    {
+        m_Animator.SetFloat("IKTransitionTime", ikTime);
+    }
 }

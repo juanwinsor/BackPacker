@@ -22,7 +22,8 @@ public class GameplayManager : MonoBehaviour
 
     public LevelManager levelManager;
 
-    public float playerMoveSpeed = 0.5f;
+    public float playerMoveTime = 0.5f;
+    public float playerIKTransitionTime = 0.5f;
 
     private PlayerController m_PlayerController;
     private TileScript m_CurrentTile;
@@ -37,6 +38,15 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void StartLevel()
+    {
+        //-- set the characters current tile
+        m_CurrentTile = levelManager.GetTile(MoveDirection.MoveLeft, LaneNumber.Left, 0);
+
+        //-- set the character position
+        m_PlayerController.transform.position = m_CurrentTile.transform.position;
     }
 
     public void RequestMove( MoveDirection direction )
@@ -71,5 +81,10 @@ public class GameplayManager : MonoBehaviour
     public void RegisterPlayerController( PlayerController playerController )
     {
         m_PlayerController = playerController;
+        //-- set the variable for the time it takes the player to hop to a tile
+        m_PlayerController.SetMoveTime(playerMoveTime);
+        m_PlayerController.SetIKTransitionTime(playerIKTransitionTime);
+
+        //StartLevel();
     }
 }
