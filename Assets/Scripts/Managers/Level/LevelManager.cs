@@ -12,9 +12,11 @@ public class LevelManager : MonoBehaviour
     public List<Sprite> slideSprites = new List<Sprite>();
     public List<Sprite> spikeSprites = new List<Sprite>();
 
+    float spriteScaledSize = 0;
 
 
-    List<TileScript> TileSetList = new List<TileScript>();
+
+    List<TileScript> tileSetList = new List<TileScript>();
     int maxLevelSize = 15;
     int bossTime = 5;
     int currentElevation = 0;
@@ -26,6 +28,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         gameObject.transform.localScale = new Vector3(spriteScale, spriteScale, spriteScale);
+        spriteScaledSize = 160.0f / 256.0f * safeSprites[0].textureRect.width;
         InitializeLevel();
     }
 
@@ -62,7 +65,7 @@ public class LevelManager : MonoBehaviour
                 }//end switch
                 tileScriptToUse.setTilePosition(currentElevation); //Sets the new tiles position
                 tileScriptToUse.gameObject.SetActive(true);//Set the tile to be active
-                TileSetList.Add(tileScriptToUse); //add the tile to the active list
+                tileSetList.Add(tileScriptToUse); //add the tile to the active list
             }
             nextElevation++;
         }
@@ -97,18 +100,18 @@ public class LevelManager : MonoBehaviour
             }//end switch
             tileScriptToUse.setTilePosition(currentElevation); //Sets the new tiles position
             tileScriptToUse.gameObject.SetActive(true);//Set the tile to be active
-            TileSetList.Add(tileScriptToUse); //add the tile to the active list
+            tileSetList.Add(tileScriptToUse); //add the tile to the active list
         }
         nextElevation++;
     }
 
     void RemoveRow()
     {
-        for (int i = 0; i < TileSetList.Count; i++)
+        for (int i = 0; i < tileSetList.Count; i++)
         {
-            if (TileSetList[i].myElevation == lastElevation)
+            if (tileSetList[i].myElevation == lastElevation)
             {
-                TileSetList.Remove(TileSetList[i]);
+                tileSetList.Remove(tileSetList[i]);
             }
         }
         lastElevation++;
@@ -116,11 +119,14 @@ public class LevelManager : MonoBehaviour
 
     public void MoveTiles(MoveDirection direction, float moveTime)
     {
+        Vector3 newPosition = Vector3.zero;
         if (MoveDirection.MoveUp == direction)
-        {
-            for (int i = 0; i < TileSetList.Count; i++)
+        {            
+            for (int i = 0; i < tileSetList.Count; i++)
             {
-               // iTween.MoveTo()
+                newPosition = new Vector3(tileSetList[i].gameObject.transform.position.x, tileSetList[i].gameObject.transform.position.y - spriteScaledSize, tileSetList[i].gameObject.transform.position.z);
+                Hashtable hash = iTween.Hash("position", newPosition, "time", moveTime, "easetype", iTween.EaseType.easeOutElastic);
+                iTween.MoveTo(tileSetList[i].gameObject, hash);
             }
             currentElevation++;
             if (nextElevation - currentElevation < maxLevelSize - bossTime)
@@ -130,9 +136,12 @@ public class LevelManager : MonoBehaviour
         }
         else if (MoveDirection.MoveDown == direction)
         {
-            for (int i = 0; i < TileSetList.Count; i++)
+            for (int i = 0; i < tileSetList.Count; i++)
             {
                 //MoveTo with Itween
+                newPosition = new Vector3(tileSetList[i].gameObject.transform.position.x, tileSetList[i].gameObject.transform.position.y + spriteScaledSize, tileSetList[i].gameObject.transform.position.z);
+                Hashtable hash = iTween.Hash("position", newPosition, "time", moveTime, "easetype", iTween.EaseType.easeOutElastic);
+                iTween.MoveTo(tileSetList[i].gameObject, hash);
             }
             currentElevation--;
         }
@@ -145,20 +154,20 @@ public class LevelManager : MonoBehaviour
         switch (direction)
         {
             case MoveDirection.MoveUp:
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane && TileSetList[i].myElevation + 1 == elevation)
+                    if (tileSetList[i].myLaneNumber == lane && tileSetList[i].myElevation == elevation + 1)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
             case MoveDirection.MoveDown:
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane && TileSetList[i].myElevation - 1 == elevation)
+                    if (tileSetList[i].myLaneNumber == lane && tileSetList[i].myElevation == elevation - 1)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
@@ -168,11 +177,11 @@ public class LevelManager : MonoBehaviour
                     return null;
                 }
 
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane - 1 && TileSetList[i].myElevation == elevation)
+                    if (tileSetList[i].myLaneNumber == lane - 1 && tileSetList[i].myElevation == elevation)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
@@ -182,11 +191,11 @@ public class LevelManager : MonoBehaviour
                     return null;
                 }
 
-                for (int i = 0; i < TileSetList.Count; i++)
+                for (int i = 0; i < tileSetList.Count; i++)
                 {
-                    if (TileSetList[i].myLaneNumber == lane + 1 && TileSetList[i].myElevation == elevation)
+                    if (tileSetList[i].myLaneNumber == lane + 1 && tileSetList[i].myElevation == elevation)
                     {
-                        return TileSetList[i];
+                        return tileSetList[i];
                     }
                 }
                 break;
