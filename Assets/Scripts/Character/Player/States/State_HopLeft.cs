@@ -11,6 +11,8 @@ public class State_HopLeft : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        m_MoveTimer = 0.0f;
+
         m_IKTransitionTime = animator.GetFloat("IKTransitionTime");
         m_MoveTime = animator.GetFloat("MoveTime");
         m_MoveDistance = animator.GetFloat("MoveDistance");

@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public List<Sprite> slideSprites = new List<Sprite>();
     public List<Sprite> spikeSprites = new List<Sprite>();
 
-    float spriteScaledSize = 0;
+    public float spriteScaledSize = 0;
 
 
 
@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector3(spriteScale, spriteScale, spriteScale);
         spriteScaledSize = 160.0f / 256.0f * safeSprites[0].textureRect.width;
+        spriteScaledSize /= safeSprites[0].pixelsPerUnit;
         InitializeLevel();
     }
 

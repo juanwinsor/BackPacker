@@ -45,7 +45,10 @@ public class GameplayManager : MonoBehaviour
     {
         //-- set the characters current tile
         m_CurrentTile = levelManager.GetTile(MoveDirection.MoveLeft, LaneNumber.LeftCenter, 0);
-        //m_TileSizeScaled = m_CurrentTile.
+        m_TileSizeScaled = levelManager.spriteScaledSize;
+
+        //-- pass the scaled tile size as the move distance
+        m_PlayerController.SetMoveDistance(m_TileSizeScaled);
 
         //-- set the character position
         m_PlayerController.transform.position = m_CurrentTile.transform.position;
@@ -61,21 +64,23 @@ public class GameplayManager : MonoBehaviour
             if( direction == MoveDirection.MoveUp )
             {
                 m_PlayerController.SetPlayerState(PlayerState.Hop_Up);
-                //levelManager.MoveTiles();
+                levelManager.MoveTiles(MoveDirection.MoveUp, playerMoveTime);
             }
             if (direction == MoveDirection.MoveDown)
             {
                 m_PlayerController.SetPlayerState(PlayerState.Hop_Down);
+                levelManager.MoveTiles(MoveDirection.MoveDown, playerMoveTime);
             }
             if (direction == MoveDirection.MoveLeft)
             {
-                m_PlayerController.SetPlayerState(PlayerState.Hop_Left);
-                //levelManager.MoveTiles();
+                m_PlayerController.SetPlayerState(PlayerState.Hop_Left);                
             }
             if (direction == MoveDirection.MoveRight)
             {
                 m_PlayerController.SetPlayerState(PlayerState.Hop_Right);
             }
+
+            m_CurrentTile = nextTile;
 
         }
     }

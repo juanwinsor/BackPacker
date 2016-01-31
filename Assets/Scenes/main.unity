@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchInput: {fileID: 1662605484}
+  isBusy: 0
 --- !u!4 &630181654 stripped
 Transform:
   m_PrefabParentObject: {fileID: 454754, guid: d8fe26554a8b40744882400da1ae1fcd, type: 2}
@@ -635,6 +636,7 @@ MonoBehaviour:
   - {fileID: 21300016, guid: e627d6eacfd96f44c99c8b5ad9a9d31f, type: 3}
   spikeSprites:
   - {fileID: 21300020, guid: e627d6eacfd96f44c99c8b5ad9a9d31f, type: 3}
+  spriteScaledSize: 0
 --- !u!114 &1022725621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1022725620}
-  playerMoveTime: 0.5
+  playerMoveTime: 0.2
   playerIKTransitionTime: 0.5
 --- !u!1 &1633026989
 GameObject:

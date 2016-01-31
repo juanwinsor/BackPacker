@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public TouchInput touchInput;
     private Animator m_Animator;
 
+    public bool isBusy = false;
+
     // Use this for initialization
     void Start()
     {
@@ -139,27 +141,44 @@ public class PlayerController : MonoBehaviour
         m_Animator.SetFloat("IKTransitionTime", ikTime);
     }
 
+    public void SetMoveDistance( float distance )
+    {
+        m_Animator.SetFloat("MoveDistance", distance);
+    }
+
     public void MoveUp()
     {
-        TouchEventInfo temp = new TouchEventInfo();
-        TouchInput_Swipe(temp, 0, Vector2.up);
+        if (!isBusy)
+        {
+            TouchEventInfo temp = new TouchEventInfo();
+            TouchInput_Swipe(temp, 0, Vector2.up);
+        }
     }
 
     public void MoveDown()
     {
-        TouchEventInfo temp = new TouchEventInfo();
-        TouchInput_Swipe(temp, 0, Vector2.down);
+        if( !isBusy )
+        {
+            TouchEventInfo temp = new TouchEventInfo();
+            TouchInput_Swipe(temp, 0, Vector2.down);
+        }        
     }
 
     public void MoveLeft()
     {
-        TouchEventInfo temp = new TouchEventInfo();
-        TouchInput_Swipe(temp, 0, Vector2.left);
+        if (!isBusy)
+        {
+            TouchEventInfo temp = new TouchEventInfo();
+            TouchInput_Swipe(temp, 0, Vector2.left);
+        }
     }
 
     public void MoveRight()
     {
-        TouchEventInfo temp = new TouchEventInfo();
-        TouchInput_Swipe(temp, 0, Vector2.right);
+        if (!isBusy)
+        {
+            TouchEventInfo temp = new TouchEventInfo();
+            TouchInput_Swipe(temp, 0, Vector2.right);
+        }
     }
 }
