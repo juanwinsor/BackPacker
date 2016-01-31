@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     int bossTime = 5;
     int currentElevation = 0;
     int nextElevation = 0;
+    int lastElevation = 0;
     float spriteScale = 160.0f / 256.0f;
 
     // Use this for initialization
@@ -69,22 +70,74 @@ public class LevelManager : MonoBehaviour
 
     void SpawnRow()
     {
-        //Get free tiles from tilepool and set to nextElevation
+        if (currentElevation - lastElevation > maxLevelSize)
+        {
+            RemoveRow();
+        }
+        Sprite spriteToUse;
+        TileScript tileScriptToUse;
+        for (int j = 0; j < 4; j++)
+        {
+            spriteToUse = safeSprites[Random.Range(0, safeSprites.Count)];//Gets a random sprite of safe type
+            tileScriptToUse = theDeadPool.GetPoolObject().GetComponent<TileScript>(); //gets the TileScript from the tile prefab
+            switch (j)
+            {
+                case 0:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.Left, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+                case 1:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.LeftCenter, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+                case 2:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.RightCenter, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+                case 3:
+                    tileScriptToUse.SetNewTile(TileType.Safe, LaneNumber.Right, nextElevation, spriteToUse); //Sets the new tile's properties
+                    break;
+            }//end switch
+            tileScriptToUse.setTilePosition(currentElevation); //Sets the new tiles position
+            tileScriptToUse.gameObject.SetActive(true);//Set the tile to be active
+            TileSetList.Add(tileScriptToUse); //add the tile to the active list
+        }
         nextElevation++;
     }
 
-    void GoUp()
+    void RemoveRow()
     {
-        currentElevation++;
-        //Shift all tiles down
-        SpawnRow();
+        for (int i = 0; i < TileSetList.Count; i++)
+        {
+            if (TileSetList[i].myElevation == lastElevation)
+            {
+                TileSetList.Remove(TileSetList[i]);
+            }
+        }
+        lastElevation++;
     }
 
-    void GoDown()
+    public void MoveTiles(MoveDirection direction, float moveTime)
     {
-        currentElevation--;
-        //shift all tiles up
+        if (MoveDirection.MoveUp == direction)
+        {
+            for (int i = 0; i < TileSetList.Count; i++)
+            {
+               // iTween.MoveTo()
+            }
+            currentElevation++;
+            if (nextElevation - currentElevation < maxLevelSize - bossTime)
+            {
+                SpawnRow();
+            }
+        }
+        else if (MoveDirection.MoveDown == direction)
+        {
+            for (int i = 0; i < TileSetList.Count; i++)
+            {
+                //MoveTo with Itween
+            }
+            currentElevation--;
+        }
     }
+
 
     public TileScript GetTile(MoveDirection direction, LaneNumber lane, int elevation)
     {
