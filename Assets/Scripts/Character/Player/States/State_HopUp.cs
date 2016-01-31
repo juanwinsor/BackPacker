@@ -14,11 +14,10 @@ public class State_HopUp : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         m_MoveTimer += Time.deltaTime;
-
-        //-- switch ik targets
+        
         if(m_MoveTimer > m_IKTransitionTime)
         {
-
+            //-- switch ik targets
         }
     }
 
