@@ -43,6 +43,8 @@ public class TileScript : MonoBehaviour, IPoolable
 
         spriteScaledWidth = 160.0f / 256.0f * sprite.textureRect.width;
         spriteScaledHeight = spriteScaledWidth;
+
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
     }//End SetNewTile
 
     public void setTilePosition(int currElevation)

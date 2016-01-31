@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
 
 
 
-    List<TileScript> tileSetList = new List<TileScript>();
+    public List<TileScript> tileSetList = new List<TileScript>();
     int maxLevelSize = 15;
     int bossTime = 5;
     int currentElevation = 0;
@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
     {
         if (currentElevation - lastElevation > maxLevelSize)
         {
-            RemoveRow();
+            //RemoveRow();
         }
         Sprite spriteToUse;
         TileScript tileScriptToUse;
@@ -108,7 +108,8 @@ public class LevelManager : MonoBehaviour
 
     void RemoveRow()
     {
-        for (int i = 0; i < tileSetList.Count; i++)
+
+        for (int i = tileSetList.Count - 1; i >= 0; --i)
         {
             if (tileSetList[i].myElevation == lastElevation)
             {
@@ -123,7 +124,7 @@ public class LevelManager : MonoBehaviour
     {
         Vector3 newPosition = Vector3.zero;
         if (MoveDirection.MoveUp == direction)
-        {            
+        {
             for (int i = 0; i < tileSetList.Count; i++)
             {
                 newPosition = new Vector3(tileSetList[i].gameObject.transform.position.x, tileSetList[i].gameObject.transform.position.y - spriteScaledSize, tileSetList[i].gameObject.transform.position.z);
