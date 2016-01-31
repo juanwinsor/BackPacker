@@ -88,27 +88,53 @@ public class LevelManager : MonoBehaviour
 
     public TileScript GetTile(MoveDirection direction, LaneNumber lane, int elevation)
     {
-        
+
         switch (direction)
         {
             case MoveDirection.MoveUp:
                 for (int i = 0; i < TileSetList.Count; i++)
                 {
-                  //  if()
+                    if (TileSetList[i].myLaneNumber == lane && TileSetList[i].myElevation + 1 == elevation)
+                    {
+                        return TileSetList[i];
+                    }
                 }
-                    break;
+                break;
             case MoveDirection.MoveDown:
+                for (int i = 0; i < TileSetList.Count; i++)
+                {
+                    if (TileSetList[i].myLaneNumber == lane && TileSetList[i].myElevation - 1 == elevation)
+                    {
+                        return TileSetList[i];
+                    }
+                }
                 break;
             case MoveDirection.MoveLeft:
                 if (LaneNumber.Left == lane)
                 {
                     return null;
                 }
+
+                for (int i = 0; i < TileSetList.Count; i++)
+                {
+                    if (TileSetList[i].myLaneNumber == lane - 1 && TileSetList[i].myElevation == elevation)
+                    {
+                        return TileSetList[i];
+                    }
+                }
                 break;
             case MoveDirection.MoveRight:
                 if (LaneNumber.Right == lane)
                 {
                     return null;
+                }
+
+                for (int i = 0; i < TileSetList.Count; i++)
+                {
+                    if (TileSetList[i].myLaneNumber == lane + 1 && TileSetList[i].myElevation == elevation)
+                    {
+                        return TileSetList[i];
+                    }
                 }
                 break;
         }
