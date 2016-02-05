@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour
     }
   }
 
-  IKTargetSet GetIKTargetObject( int tileIndex )
+  IKTargetSet GetIKTargetObject(int tileIndex)
   {
     GameObject ikTarget = ikTargetPools[tileIndex].GetPoolObject();
     IKTargetSet targetScript = ikTarget.GetComponent<IKTargetSet>();

@@ -12,6 +12,7 @@ public class TileScript : MonoBehaviour, IPoolable
   Sprite sprite;
 
   public IKTargetSet ikTarget;
+  private Transform m_PreviousIKTargetParent;
 
   float spriteScaledWidth;
   float spriteScaledHeight;
@@ -20,6 +21,15 @@ public class TileScript : MonoBehaviour, IPoolable
   void Start()
   {
 
+  }
+
+  public void OnDisable()
+  {
+    if(ikTarget != null )
+    {
+      ikTarget.gameObject.SetActive(false);
+      ikTarget = null;
+    }    
   }
 
   //initialization from Objectpool
@@ -34,7 +44,7 @@ public class TileScript : MonoBehaviour, IPoolable
   {
 
   }
-
+  
   public void SetNewTile(TileType tileType, LaneNumber laneNumber, int elevation, Sprite theSprite, IKTargetSet ikTargetSet)
   {
     sprite = theSprite;
@@ -50,6 +60,14 @@ public class TileScript : MonoBehaviour, IPoolable
 
     //-- store the object from the pool
     ikTarget = ikTargetSet;
+    //-- we set active to enable and reserve the pool object
+    ikTarget.gameObject.SetActive(true);
+    //-- cache the pool parent so we can set it back when done
+    m_PreviousIKTargetParent = ikTarget.transform.parent;
+    //-- parent the ik target to the tile
+    ikTarget.transform.parent = this.gameObject.transform;
+    ikTarget.transform.localPosition = Vector3.zero;
+
   }//End SetNewTile
 
   public void setTilePosition(int currElevation)

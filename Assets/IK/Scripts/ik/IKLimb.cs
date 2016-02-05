@@ -20,6 +20,14 @@ public class IKLimb : MonoBehaviour
   private Vector3 elbowTargetRelativeStartPosition;
 
 
+  float upperArmLength;
+  float forearmLength;
+  float armLength;
+  float hypotenuse;
+  float targetDistance;
+  float adjacent;
+  float ikAngle;
+
   // Use this for initialization
   void Start()
   {
@@ -28,6 +36,19 @@ public class IKLimb : MonoBehaviour
     handStartRotation = hand.rotation;
     targetRelativeStartPosition = target.position - upperArm.position;
     elbowTargetRelativeStartPosition = elbowTarget.position - upperArm.position;
+
+    //-- precalculate distance to save square root calcs in update
+    //Calculate ikAngle variable.
+    upperArmLength = Vector3.Distance(upperArm.position, forearm.position);
+    forearmLength = Vector3.Distance(forearm.position, hand.position);
+    armLength = upperArmLength + forearmLength;
+    hypotenuse = upperArmLength;
+    targetDistance = Vector3.Distance(upperArm.position, target.position);
+    targetDistance = Mathf.Min(targetDistance, armLength - 0.0001f); //Do not allow target distance be further away than the arm's length.
+                                                                     //var adjacent : float = (targetDistance * hypotenuse) / armLength;
+    adjacent = (Mathf.Pow(hypotenuse, 2) - Mathf.Pow(forearmLength, 2) + Mathf.Pow(targetDistance, 2)) / (2 * targetDistance);
+    //Debug.Log(adjacent);
+    ikAngle = Mathf.Acos(adjacent / hypotenuse) * Mathf.Rad2Deg;
   }
 
   // Update is called once per frame
@@ -47,17 +68,7 @@ public class IKLimb : MonoBehaviour
 
   void CalculateIK()
   {
-    //Calculate ikAngle variable.
-    float upperArmLength = Vector3.Distance(upperArm.position, forearm.position);
-    float forearmLength = Vector3.Distance(forearm.position, hand.position);
-    float armLength = upperArmLength + forearmLength;
-    float hypotenuse = upperArmLength;
-    float targetDistance = Vector3.Distance(upperArm.position, target.position);
-    targetDistance = Mathf.Min(targetDistance, armLength - 0.0001f); //Do not allow target distance be further away than the arm's length.
-                                                                     //var adjacent : float = (targetDistance * hypotenuse) / armLength;
-    float adjacent = (Mathf.Pow(hypotenuse, 2) - Mathf.Pow(forearmLength, 2) + Mathf.Pow(targetDistance, 2)) / (2 * targetDistance);
-    Debug.Log(adjacent);
-    float ikAngle = Mathf.Acos(adjacent / hypotenuse) * Mathf.Rad2Deg;
+    
     //Store pre-ik info.
     Vector3 targetPosition = target.position;
     Vector3 elbowTargetPosition = elbowTarget.position;
@@ -81,7 +92,7 @@ public class IKLimb : MonoBehaviour
     forearm.rotation = forearmStartRotation;
     hand.rotation = handStartRotation;
 
-    //Work with temporaty game objects and align & parent them to the arm.
+    //Work with temporary game objects and align & parent them to the arm.
     transform.position = upperArm.position;
     transform.LookAt(targetPosition, elbowTargetPosition - transform.position);
     GameObject upperArmAxisCorrection = new GameObject("upperArmAxisCorrection");
