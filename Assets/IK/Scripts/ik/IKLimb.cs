@@ -37,18 +37,7 @@ public class IKLimb : MonoBehaviour
     targetRelativeStartPosition = target.position - upperArm.position;
     elbowTargetRelativeStartPosition = elbowTarget.position - upperArm.position;
 
-    //-- precalculate distance to save square root calcs in update
-    //Calculate ikAngle variable.
-    upperArmLength = Vector3.Distance(upperArm.position, forearm.position);
-    forearmLength = Vector3.Distance(forearm.position, hand.position);
-    armLength = upperArmLength + forearmLength;
-    hypotenuse = upperArmLength;
-    targetDistance = Vector3.Distance(upperArm.position, target.position);
-    targetDistance = Mathf.Min(targetDistance, armLength - 0.0001f); //Do not allow target distance be further away than the arm's length.
-                                                                     //var adjacent : float = (targetDistance * hypotenuse) / armLength;
-    adjacent = (Mathf.Pow(hypotenuse, 2) - Mathf.Pow(forearmLength, 2) + Mathf.Pow(targetDistance, 2)) / (2 * targetDistance);
-    //Debug.Log(adjacent);
-    ikAngle = Mathf.Acos(adjacent / hypotenuse) * Mathf.Rad2Deg;
+    
   }
 
   // Update is called once per frame
@@ -68,7 +57,19 @@ public class IKLimb : MonoBehaviour
 
   void CalculateIK()
   {
-    
+    //-- precalculate distance to save square root calcs in update
+    //Calculate ikAngle variable.
+    upperArmLength = Vector3.Distance(upperArm.position, forearm.position);
+    forearmLength = Vector3.Distance(forearm.position, hand.position);
+    armLength = upperArmLength + forearmLength;
+    hypotenuse = upperArmLength;
+    targetDistance = Vector3.Distance(upperArm.position, target.position);
+    targetDistance = Mathf.Min(targetDistance, armLength - 0.0001f); //Do not allow target distance be further away than the arm's length.
+                                                                     //var adjacent : float = (targetDistance * hypotenuse) / armLength;
+    adjacent = (Mathf.Pow(hypotenuse, 2.0f) - Mathf.Pow(forearmLength, 2.0f) + Mathf.Pow(targetDistance, 2.0f)) / (2.0f * targetDistance);
+    //Debug.Log(adjacent);
+    ikAngle = Mathf.Acos(adjacent / hypotenuse) * Mathf.Rad2Deg;
+
     //Store pre-ik info.
     Vector3 targetPosition = target.position;
     Vector3 elbowTargetPosition = elbowTarget.position;
@@ -84,6 +85,12 @@ public class IKLimb : MonoBehaviour
     Quaternion upperArmRotation = upperArm.rotation;
     Quaternion forearmRotation = forearm.rotation;
     Quaternion handRotation = hand.rotation;
+
+
+    
+
+
+
 
     //Reset arm.
     target.position = targetRelativeStartPosition + upperArm.position;
@@ -109,9 +116,11 @@ public class IKLimb : MonoBehaviour
     handAxisCorrection.transform.position = hand.position;
     handAxisCorrection.transform.parent = forearmAxisCorrection.transform;
     hand.parent = handAxisCorrection.transform;
+
     //Reset targets.
     target.position = targetPosition;
     elbowTarget.position = elbowTargetPosition;
+
     //Apply rotation for temporary game objects.
     upperArmAxisCorrection.transform.LookAt(target, elbowTarget.position - upperArmAxisCorrection.transform.position);
     Vector3 upperArmAxisEuler = upperArmAxisCorrection.transform.localRotation.eulerAngles;
@@ -119,6 +128,7 @@ public class IKLimb : MonoBehaviour
     upperArmAxisCorrection.transform.localRotation = Quaternion.Euler(upperArmAxisEuler);
     forearmAxisCorrection.transform.LookAt(target, elbowTarget.position - upperArmAxisCorrection.transform.position);
     handAxisCorrection.transform.rotation = target.rotation;
+
     //Restore limbs.
     upperArm.parent = upperArmParent;
     forearm.parent = forearmParent;
@@ -129,15 +139,18 @@ public class IKLimb : MonoBehaviour
     upperArm.localPosition = upperArmLocalPosition;
     forearm.localPosition = forearmLocalPosition;
     hand.localPosition = handLocalPosition;
+
     //Clean up temporary game objets.
     Destroy(upperArmAxisCorrection);
     Destroy(forearmAxisCorrection);
     Destroy(handAxisCorrection);
+
     //Transition.
     transition = Mathf.Clamp01(transition);
     upperArm.rotation = Quaternion.Slerp(upperArmRotation, upperArm.rotation, transition);
     forearm.rotation = Quaternion.Slerp(forearmRotation, forearm.rotation, transition);
     hand.rotation = Quaternion.Slerp(handRotation, hand.rotation, transition);
+
     //Debug.
     if (debug)
     {
